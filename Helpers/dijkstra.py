@@ -1,0 +1,44 @@
+def dijkstra(graph, begin, end, max_val=10**8):
+    values = {node: max_val for node in graph}
+    values[begin] = 0
+    current = begin
+    unvisited = [node for node in graph]
+    while end in unvisited:
+        for node in graph[current]:
+            values[node] = min(values[node], values[current] + graph[current][node])
+        unvisited.remove(current)
+        try:
+            current = min(unvisited, key=lambda x: values[x])
+        except:
+            break
+    return values[end]
+
+def matrix_to_graph(matrix):
+    graph = {}
+    c = len(matrix[0])
+    l = len(matrix)
+    #First row
+    graph[(0, 0)] = {(0,1):matrix[0][1] , (1,0):matrix[1][0]}
+    for j in xrange(1, c-1):
+        graph[(0, j)] = {(0, j-1):matrix[0][j-1], (0, j+1):matrix[0][j+1], (1, j):matrix[1][j]}
+    graph[(0, c-1)] = {(0, c-2): matrix[0][c-2], (1, c-1):matrix[1][c-1]}
+    for i in xrange(1, l-1):
+        graph[(i, 0)] = {(i-1, 0):matrix[i-1][0] , (i, 1):matrix[i][1] , (i+1, 0):matrix[i+1][0]}
+        for j in xrange(1, c-1):
+            graph[(i, j)] = {(i-1, j):matrix[i-1][j], (i+1, j):matrix[i+1][j], (i, j-1):matrix[i][j-1], (i, j+1):matrix[i][j+1]}
+        graph[(i, c-1)] = {(i-1, c-1):matrix[i-1][c-1] , (i, c-2):matrix[i][c-2] , (i+1, c-1):matrix[i+1][c-1]}
+    graph[l-1, 0] = {(l-2, 0): matrix[l-2][0], (l-1, 1): matrix[l-1][1]}
+    for j in xrange(1, c-1):
+        graph[(l-1, j)] = {(l-1, j-1): matrix[l-1][j-1], (l-1, j+1): matrix[l-1][j+1], (l-2, j): matrix[l-2][j]}
+    graph[(l-1, c-1)] = {(l-2, c-1): matrix[l-2][c-1], (l-1, c-2): matrix[l-1][c-2]}
+    return graph
+
+
+
+
+matrix = [[131, 673, 234, 103, 18], [201, 96, 342, 965, 150],\
+            [630, 803, 746, 422, 111], [537, 699, 497, 121, 956],\
+            [805, 732, 524, 37, 331]]
+
+
+print matrix[0][0] + dijkstra(matrix_to_graph(matrix), (0,0), (4,4))
