@@ -1,11 +1,12 @@
 #Euler 179
 from eulertools import primes
+from math import sqrt
 
 
 
 def f(n):
     primes_list = primes(n)
-    mod_primes_list = primes_list[1:]
-    possibilities = [2, 3]
-    for i in xrange(4, n):
-        if i in mod_primes_list
+    squares_list = [i**2 for i in xrange(1, int(sqrt(n)) + 1)]
+    candidates = range(1, n)
+
+f(10**7)

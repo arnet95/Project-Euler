@@ -47,4 +47,3 @@ def matrix_to_graph(matrix):
     return graph
 
 print cost_matrix[0][0] + dijkstra(matrix_to_graph(cost_matrix), (0,0), (len(matrix)-1,len(matrix[0])-1))
-print matrix_to_graph(cost_matrix)

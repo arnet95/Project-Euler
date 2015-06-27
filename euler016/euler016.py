@@ -1,1 +1,3 @@
-sum(int(c) for c in str(2**1000))
+#Project Euler 16: Power digit sum
+
+print sum(int(c) for c in str(2**1000))

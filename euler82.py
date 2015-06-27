@@ -33,7 +33,7 @@ for i in xrange(1, len(matrix)):
         guess = min(guess, s + min_matrix[k][i-1])
         k += 1
     min_matrix[0][i] = guess + cost_matrix[0][i]
-    #For the rest of them 
+    #For the rest of them
     for j in xrange(1, len(matrix[i])-1):
         guess = min(min_matrix[j][i-1], min_matrix[j-1][i])
         s = 0

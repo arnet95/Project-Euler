@@ -3,11 +3,9 @@ from math import ceil
 
 def gcd(a,b):
     while b != 0:
-        t = b
-        b = a%b
-        a = t
+        b, a = a%b, b
     return a
-    
+
 
 primitives = []
 for m in xrange(2, 1000):
@@ -19,14 +17,13 @@ for m in xrange(2, 1000):
 
 lengths = []
 for prim in primitives:
-    x = 1.5e6/prim
+    x = int(1.5e6/prim)+1
     k = 1
-    while k <= ceil(x):
+    while k <= x:
         y = prim*k
         if y <= 1500000:
             lengths.append(y)
         k += 1
-print len(lengths)
 
 lengths = sorted(lengths)
 def f(l):

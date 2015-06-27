@@ -21,7 +21,7 @@ for i in xrange(len(matrix)):
 
 #Populate first row
 min_matrix[0][0] = a_matrix[0][0]
-for j in xrange(len(matrix[0])):
+for j in xrange(80):
     if min_matrix[0][j] == -1:
         min_matrix[0][j] = min_matrix[0][j-1] + a_matrix[0][j]
 

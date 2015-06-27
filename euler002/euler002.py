@@ -1,11 +1,13 @@
 #Project Euler 2: Even Fibonacci numbers
 
-xp, xpp = 2, 1
-s = 0
+def while_loop(n):
+    xp, xpp = 2, 1
+    s = 0
+    while xpp < n:
+        if xpp % 2 == 0:
+            s += xpp
+        xp, xpp = xp + xpp, xp
 
-while xpp < 4000000:
-    if xpp % 2 == 0:
-        s += xpp
-    xp, xpp = xp + xpp, xp
+    return s
 
-print s
+print while_loop(4000000)
