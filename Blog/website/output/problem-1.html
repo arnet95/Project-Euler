@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="utf-8" />
+        <title>Problem 1</title>
+        <link rel="stylesheet" href="/theme/css/main.css" />
+
+        <!--[if IE]>
+            <script src="https://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+
+<body id="index" class="home">
+        <header id="banner" class="body">
+                <h1><a href="/">test </a></h1>
+                <nav><ul>
+                    <li class="active"><a href="/category/problem-solutions.html">Problem solutions</a></li>
+                </ul></nav>
+        </header><!-- /#banner -->
+<section id="content" class="body">
+  <article>
+    <header>
+      <h1 class="entry-title">
+        <a href="/problem-1.html" rel="bookmark"
+           title="Permalink to Problem 1">Problem 1</a></h1>
+    </header>
+
+    <div class="entry-content">
+<footer class="post-info">
+        <abbr class="published" title="2015-07-02T00:00:00+02:00">
+                Published: to. 02 juli 2015
+        </abbr>
+
+        <address class="vcard author">
+                By                         <a class="url fn" href="/author/at.html">At</a>
+        </address>
+<p>In <a href="/category/problem-solutions.html">Problem solutions</a>.</p>
+
+</footer><!-- /.post-info -->      <h4>Problem text</h4>
+<h4>Solution idea</h4>
+<p>Since we only need to check numbers up to 1000, this is a problem which is within the scope of a brute-force approach, and in order to check for divisibility we can use the <a href="https://en.wikipedia.org/wiki/Modulo_operation">modulo operator</a>.</p>
+<p>Here is a possible solution which is very straightforward:</p>
+<div class="highlight"><pre><span class="k">def</span> <span class="nf">problem1</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">i</span><span class="o">%</span><span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="n">i</span>
+    <span class="k">return</span> <span class="n">s</span>
+</pre></div>
+
+
+<h4>Other (similar) solutions</h4>
+<h5>Python one-liner</h5>
+<div class="highlight"><pre><span class="k">print</span> <span class="nb">sum</span><span class="p">(</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">xrange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span> <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">i</span><span class="o">%</span><span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+
+<h5>Scheme</h5>
+<div class="highlight"><pre><span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">range</span> <span class="nv">start</span> <span class="nv">stop</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="nv">start</span> <span class="nv">stop</span><span class="p">)</span>
+    <span class="o">&#39;</span><span class="p">()</span>
+    <span class="p">(</span><span class="nb">cons </span><span class="nv">start</span> <span class="p">(</span><span class="nf">range</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">start</span> <span class="mi">1</span><span class="p">)</span> <span class="nv">stop</span><span class="p">))))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">divisible-by</span> <span class="nv">n</span> <span class="nv">m</span><span class="p">)</span>
+  <span class="p">(</span><span class="nb">= </span><span class="mi">0</span> <span class="p">(</span><span class="nb">modulo </span><span class="nv">n</span> <span class="nv">m</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="p">(</span><span class="nf">filter</span> <span class="nv">pred</span> <span class="nv">lst</span><span class="p">)</span>
+  <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">null? </span><span class="nv">lst</span><span class="p">)</span> <span class="o">&#39;</span><span class="p">())</span>
+        <span class="p">((</span><span class="nf">pred</span> <span class="p">(</span><span class="nb">car </span><span class="nv">lst</span><span class="p">))</span> <span class="p">(</span><span class="nb">cons </span><span class="p">(</span><span class="nb">car </span><span class="nv">lst</span><span class="p">)</span> <span class="p">(</span><span class="nf">filter</span> <span class="nv">pred</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lst</span><span class="p">))))</span>
+        <span class="p">(</span><span class="k">else </span><span class="p">(</span><span class="nf">filter</span> <span class="nv">pred</span> <span class="p">(</span><span class="nb">cdr </span><span class="nv">lst</span><span class="p">)))))</span>
+
+<span class="p">(</span><span class="nb">apply </span><span class="nv">+</span> <span class="p">(</span><span class="nf">filter</span> 
+      <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">n</span><span class="p">)</span> 
+        <span class="p">(</span><span class="k">or </span><span class="p">(</span><span class="nf">divisible-by</span> <span class="nv">n</span> <span class="mi">3</span><span class="p">)</span>
+            <span class="p">(</span><span class="nf">divisible-by</span> <span class="nv">n</span> <span class="mi">5</span><span class="p">)))</span>
+      <span class="p">(</span><span class="nf">range</span> <span class="mi">1</span> <span class="mi">1000</span><span class="p">)))</span>
+</pre></div>
+
+
+<h5>Haskell</h5>
+<div class="highlight"><pre><span class="nf">main</span> <span class="ow">=</span> <span class="n">print</span> <span class="p">(</span><span class="n">sum</span> <span class="p">[</span><span class="n">x</span> <span class="o">|</span> <span class="n">x</span> <span class="ow">&lt;-</span> <span class="p">[</span><span class="mi">1</span><span class="o">..</span><span class="mi">999</span><span class="p">],</span> <span class="n">mod</span> <span class="n">x</span> <span class="mi">3</span> <span class="o">==</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">mod</span> <span class="n">x</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span><span class="p">])</span>
+</pre></div>
+    </div><!-- /.entry-content -->
+
+  </article>
+</section>
+        <section id="extras" class="body">
+                <div class="blogroll">
+                        <h2>blogroll</h2>
+                        <ul>
+                            <li><a href="http://getpelican.com/">Pelican</a></li>
+                            <li><a href="http://python.org/">Python.org</a></li>
+                            <li><a href="http://jinja.pocoo.org/">Jinja2</a></li>
+                            <li><a href="#">You can modify those links in your config file</a></li>
+                        </ul>
+                </div><!-- /.blogroll -->
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+
+                            <li><a href="#">You can add links in your config file</a></li>
+                            <li><a href="#">Another social link</a></li>
+                        </ul>
+                </div><!-- /.social -->
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://getpelican.com/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+</body>
+</html>

@@ -1,22 +1,23 @@
 #Project Euler 183: Maximum product of parts
-from __future__ import division
 from math import e, ceil, log
+from fractions import gcd
+
 
 def reduced(n):
-    while n%2 == 0:
-        n = n/2
-    while n%5 == 0:
-        n = n/5
+    while (n % 2) == 0:
+        n = n // 2
+    while (n % 5) == 0:
+        n = n // 5
     return -1 if n == 1 else 1
 
 def d(N):
-    minimum = N/e
-    low = int(minimum)
+    low = int(N/e)
     high = low + 1
-    k = high if (low * log(N/low)) < (high * log(N/high)) else low
+    k = high if (low * (log(N) - log(low))) < (high * (log(N) - log(high))) else low
+    k = k/(gcd(k, N))
     return reduced(k)*N
 
-def main(upper):
-    return sum(d(n) for n in xrange(5, upper+1))
+def main(n):
+    return sum(d(i) for i in xrange(5, n+1))
 
-print main(100)
+print main(10000)

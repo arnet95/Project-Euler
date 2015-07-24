@@ -58,4 +58,3 @@ with open("p054_poker.txt", "r") as infile:
         counter += value(line.split()[:5]) > value(line.split()[5:])
 
 print counter
-

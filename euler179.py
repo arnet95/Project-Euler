@@ -1,12 +1,22 @@
 #Euler 179
-from eulertools import primes
 from math import sqrt
 
-
-
 def f(n):
-    primes_list = primes(n)
-    squares_list = [i**2 for i in xrange(1, int(sqrt(n)) + 1)]
-    candidates = range(1, n)
+    divs = [0, 1] + [2] * (n - 1)
+    for i in xrange(2, int(sqrt(n)) + 1):
+        divs[i*i] += 1
+        for d in xrange(i*(i+1), n+1, i):
+            divs[d] += 2
+    return divs
 
-f(10**7)
+def main(n):
+    c = 0
+    divs = f(n)
+    old = divs[2]
+    for div in divs[3:]:
+        if div == old:
+            c += 1
+        old = div
+    return c
+
+print main(10**7)

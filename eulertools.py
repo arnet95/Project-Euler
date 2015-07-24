@@ -27,3 +27,38 @@ def squarefree_gen(n):
             m += 1
             prod = m*x
     return [i for i in xrange(2, n+1) if sieve[i]]
+
+def egcd(a, b):
+    if a == 0:
+        return (b, 0, 1)
+    else:
+        g, y, x = egcd(b % a, a)
+        return (g, x - (b // a) * y, y)
+
+def modinv(a, m):
+    g, x, y = egcd(a, m)
+    if g != 1:
+        raise Exception('modular inverse does not exist')
+    else:
+        return x % m
+
+def dynamic_sigma(x, n):
+    if x == 0:
+        divs = [0, 1] + [2] * (n - 1)
+        for i in xrange(2, int(n**0.5) + 1):
+            divs[i*i] += 1
+            for d in xrange(i*(i+1), n+1, i):
+                divs[d] += 2
+    elif x == 1:
+        divs = [0, 1] + [i + 1 for i in xrange(2, n+1)]
+        for i in xrange(2, int(n**0.5) + 1):
+            divs[i*i] += i
+            for d in xrange(i*(i+1), n+1, i):
+                divs[d] += i + (d//i)
+    else:
+        divs = [0, 1] + [i**x + 1 for i in xrange(2, n+1)]
+        for i in xrange(2, int(n**0.5) + 1):
+            divs[i*i] += i**x
+            for d in xrange(i*(i+1), n+1, i):
+                divs[d] += i**x + (d//i)**x
+    return divs

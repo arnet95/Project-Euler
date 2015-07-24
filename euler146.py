@@ -21,12 +21,12 @@ def isprime2(n):
     return True
 
 def isprime(n):
-	"""Works!!!"""
+    """Works!!!"""
     if pow(2,n-1,n) == 1:
         return True
     return False
 
-def f(n): 
+def f(n):
     s = 0
     for k in gen_list_2(n):
         x = k**2
