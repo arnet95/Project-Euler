@@ -5,8 +5,8 @@ from fractions import *
 
 prime_list = primes(10**6)
 
-target_num = 4
-target_den = 10
+target_num = 15499
+target_den = 94744
 
 n = 1
 frac_num = 1
@@ -21,3 +21,4 @@ while True:
         n *= p
         frac_num *= (p - 1)
         frac_den *= p
+        i += 1

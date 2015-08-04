@@ -7,5 +7,4 @@ def main(n):
             c += 1
     return c
 
-
 print main(2**30)

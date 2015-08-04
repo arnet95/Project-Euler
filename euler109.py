@@ -10,10 +10,6 @@ one_checkout = [[i] for i in doubles]
 two_checkout = [[i, j] for i in all_values for j in doubles]
 three_checkout = [[i, j, k] for i in all_values for j in all_values for k in doubles]
 
-
-def f(s):
-    return key.find(s[0]) * int(s[1:])
-
 vals = {i: [] for i in xrange(171)}
 for checkout in one_checkout + two_checkout + three_checkout:
     s = sum(key.find(i[0]) * int(i[1:]) for i in checkout)

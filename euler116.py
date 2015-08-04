@@ -1,42 +1,21 @@
 #Project Euler 116: Red, green or blue tiles
+import time
 
-red_mem = {}
-def reds(n, bool):
-    if (n, bool) in red_mem:
-        return red_mem[(n, bool)]
-    elif n < 2:
-        red_mem[(n, bool)] = 1*bool
-        return 1*bool
+mem = {}
+def f(n, used, k):
+    if (n, used, k) in mem:
+        return mem[(n, used, k)]
+    elif n < k:
+        a = used
     else:
-        a = reds(n-1, bool) + reds(n-2, True)
-        red_mem[(n, bool)] = a
-        return a
+        a = f(n-1, used, k) + f(n-k, True, k)
+    mem[(n, used, k)] = a
+    return a
 
-green_mem = {}
-def greens(n, bool):
-    if (n, bool) in green_mem:
-        return green_mem[(n, bool)]
-    elif n < 3:
-        green_mem[(n, bool)] = 1*bool
-        return 1*bool
-    else:
-        a = greens(n-1, bool) + greens(n-3, True)
-        green_mem[(n, bool)] = a
-        return a
+def main(n):
+    return f(n, False, 2) + f(n, False, 3) + f(n, False, 4)
 
-blue_mem = {}
-def blues(n, bool):
-    if (n, bool) in blue_mem:
-        return blue_mem[(n, bool)]
-    elif n < 4:
-        blue_mem[(n, bool)] = 1*bool
-        return 1*bool
-    else:
-        a = blues(n-1, bool) + blues(n-4, True)
-        blue_mem[(n, bool)] = a
-        return a
-
-def f(n):
-    return reds(n, False) + greens(n, False) + blues(n, False)
-
-print f(50)
+t0 = time.time()
+print main(50)
+print time.time() - t0
+#We let f(n, used, k) represent

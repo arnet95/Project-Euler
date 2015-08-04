@@ -12,7 +12,7 @@ def convert_to(b, n):
     return l
 
 def g(p, n):
-    return sum(b*((p**i-1)/(p-1)) for i, b in enumerate(convert_to(p, n)))
+    return sum(b*((p**i-1)//(p-1)) for i, b in enumerate(convert_to(p, n)))
 
 def f(n):
     s = 0

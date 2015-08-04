@@ -24,10 +24,10 @@ max_transitions = [[sum(a != b for a, b in zip(i, j)) for i in digits] for j in 
 
 def sam_trans(n):
     s = 0
-    while n > 9:
+    while n:
         s += sam_transitions[n%10]
-        n /= 10
-    return s + sam_transitions[n]
+        n = n // 10
+    return s
 
 def sam_num(n):
     if n in sam_mem:
@@ -37,7 +37,6 @@ def sam_num(n):
     else:
         return 2*sam_trans(n) + sam_num(digit_sum(n))
 
-#First, populate mem_table up to 64
 sam_mem = {}
 for i in xrange(65):
     sam_mem[i] = sam_num(i)
@@ -61,7 +60,6 @@ def max_sub(n):
 def max_num(n):
     return sam_trans(n) + max_sub(n)
 
-#Populate table
 max_mem = {}
 for i in xrange(65):
     max_mem[i] = max_sub(i)
@@ -69,4 +67,4 @@ for i in xrange(65):
 def main(l):
     return sum(sam_num(i) - max_num(i) for i in l)
 
-#print main(primes(2*10**7)[664579:])
+print main(primes(2*10**7)[664579:])

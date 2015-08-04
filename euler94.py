@@ -1,9 +1,10 @@
 from math import sqrt
 
 def is_square(n):
-    if sqrt(n) % 1 == 0:
-        return abs(sqrt(n)*sqrt(n) - n) < 1E-5
-    return False
+    return sqrt(n) % 1 == 0
+    #if :
+#        return abs(sqrt(n)*sqrt(n) - n) < 1E-5#
+#    return False
 
 def main(n):
     s = 16
@@ -20,4 +21,4 @@ def main(n):
                     s += (k*2) + 2*(k*2+1)
     return s
 
-print main(166666667)
+print main(100000000)

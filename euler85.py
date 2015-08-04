@@ -12,7 +12,7 @@ def f(n):
     for i in xrange(1,n+1):
         for j in xrange(1,n+1):
             x = num_rect(i,j)
-            if abs(x-2000000) < diff:
+            if abs(x - 2000000) < diff:
                 a, b = i, j
                 diff = abs(2000000 - x)
             if x > 2000000:

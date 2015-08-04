@@ -1,7 +1,5 @@
 #Project Euler 173: Using up to one million tiles how many different
 #"hollow" square laminae can be formed?
-from math import sqrt
-
 
 def f(n):
     s = 0

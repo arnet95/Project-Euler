@@ -18,7 +18,6 @@ def all_sums(i, N):
 def is_palindrome(n):
     return str(n) == str(n)[::-1]
 
-
 def main(N):
     max_n = max_num(N)
     sums = []

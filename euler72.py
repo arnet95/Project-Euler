@@ -1,33 +1,21 @@
 from math import sqrt
 from itertools import combinations
-
-def rwh_primes1(n):
-    # http://stackoverflow.com/questions/2068372/fastest-way-to-list-all-primes-below-n-in-python/3035188#3035188
-    """ Returns  a list of primes < n """
-    sieve = [True] * (n/2)
-    for i in xrange(3,int(n**0.5)+1,2):
-        if sieve[i/2]:
-            sieve[i*i/2::i] = [False] * ((n-i*i-1)/(2*i)+1)
-    return [2] + [2*i+1 for i in xrange(1,n/2) if sieve[i]]
-
-primes = rwh_primes1(1000000)
-
+from eulertools import primes
 
 def f(n):
+    prime_list = primes(n)
     count = 0
     for i in xrange(2,n+1):
-        if i in primes:
+        if i in prime_list:
             count += i-1
         else:
             factors = []
-            for p in primes:
+            for p in prime_list:
                 if p > i/2.0:
                     break
                 if i%p == 0:
                     factors.append(p)
             count += pie(i, factors)
-        if i%10000 == 0:
-            print i
     return count
 
 

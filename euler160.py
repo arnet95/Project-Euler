@@ -1,23 +1,26 @@
 #Project Euler 160: Factorial trailing digits
+from math import factorial
+#def f(n):
 
-def factorial(n):
-    s = 1
-    for i in xrange(1, n):
-        s *= i
-    return s
+def prod(l):
+    p = 1
+    for i in l:
+        p *= i
+    return p
 
-def f(n):
-    if n == 1:
-        return 36288
+products = [prod(range(i, 100000, 10)) % 100000 for i in xrange(10)]
+
+def g(i, n):
+    if n % 100000 == 0:
+        if i % 2 == 1:
+            return 1
+        else:
+            return pow(products[i], n//100000, 100000)
     else:
-        s = 1
-        for i in [3,4,6,7,8,9]:
-            s *= pow(i, 10**(n-1), 10**5)
-            s %= 100000
+        #Tackle this later
+        raise ValueError("n not divisible by 10^5")
 
-        return (s * f(n - 1) * factorial(10**n - 1)**2) % 10**5
-
-
-
-print f(2)
-print factorial(100)
+print products
+print prod(range(1, 10**6, 10**5))
+a = factorial(10**5)
+print len(str(a))

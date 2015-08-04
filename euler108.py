@@ -7,8 +7,6 @@ def find_solutions(n):
             counter += 1
     return counter+1
 
-
-
 def f():
     n = 1
     while True:
@@ -18,4 +16,8 @@ def f():
             return n
         n += 1
 
-print f()
+#print f()
+
+def new_main(n):
+    l = [1] * (n//3+1)
+    min_next_log = [2*log(prime_list[i]) for i in xrange(len(l))]

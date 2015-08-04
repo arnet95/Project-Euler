@@ -1,7 +1,6 @@
 #Project Euler 77: Prime summations
 from eulertools import primes
 
-
 mem = {}
 def f(n, max_allowed):
     if (n, max_allowed) in mem:
@@ -19,12 +18,11 @@ def f(n, max_allowed):
         mem[(n, max_allowed)] = tmp
         return tmp
 
-def main():
+def main(target):
     n = 0
     while True:
-        if f(n, n-1) > 5000:
+        if f(n, n-1) > target:
             return n
         n += 1
 
-
-print main()
+print main(5000)

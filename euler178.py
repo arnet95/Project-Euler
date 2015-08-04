@@ -6,7 +6,7 @@ def f(rem, curr, min_seen, max_seen):
         return mem[(rem, curr, min_seen, max_seen)]
     else:
         if rem == 0:
-            tmp = 1*(min_seen == 0 and max_seen == 9)
+            tmp = (min_seen == 0 and max_seen == 9)
         elif curr == 0:
             tmp = f(rem - 1, 1, 0, max_seen)
         elif curr == 9:

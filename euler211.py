@@ -3,20 +3,9 @@ from math import sqrt
 from eulertools import dynamic_sigma
 import time
 
-def is_square2(n):
-    x = n // 2
-    seen = set([x])
-    while x * x != n:
-        x = (x + (n // x)) // 2
-        if x in seen: return False
-        seen.add(x)
-    return True
-
 def is_square(n):
-    if sqrt(n) % 1 == 0:
-        if abs(sqrt(n)**2 - n) < 1E-8:
-            return is_square2(n)
-    return False
+    #Turns out to be good enough in this case
+    return sqrt(n) % 1 == 0
 
 def main(n):
     s = 1

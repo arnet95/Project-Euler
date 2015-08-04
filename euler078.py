@@ -11,22 +11,19 @@ def p(n):
     else:
         s = 0
         #Positives
-        k = 1
-        flip = 1
+        k, flip = 1, 1
         while g(k) <= n:
             s += flip*p(n - g(k))
             k += 1
             flip *= -1
         #Negatives
-        flip = 1
-        k = -1
+        k, flip = -1, 1
         while g(k) <= n:
             s += flip*p(n - g(k))
             k -= 1
             flip *= -1
         mem[n] = s
         return s
-
 
 def main():
     n = 1

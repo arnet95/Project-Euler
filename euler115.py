@@ -6,24 +6,21 @@ def F(m, n):
         if (n, red) in mem:
             return mem[(n, red)]
         elif n < m:
-            mem[(n, red)] = 1
-            return 1
+            a = 1
         elif red:
             a = f(n-1, False)
-            mem[(n, red)] = a
-            return a
         else:
             a = f(n - 1, False) + sum(f(i, True) for i in xrange(n - m, -1, -1))
-            mem[(n, red)] = a
-            return a
+        mem[(n, red)] = a
+        return a
 
     return f(n, False)
 
-def main():
+def main(n):
     i = 0
     while True:
-        if F(50, i) > 1000000:
+        if F(50, i) > n:
             return i
         i += 1
 
-print main()
+print main(1000000)
