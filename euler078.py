@@ -1,8 +1,6 @@
 #Project Euler 78: Coin partitions
 
-def g(k):
-    return (k*(3*k-1))/2
-
+g = lambda k: (k*(3*k-1)) // 2
 
 mem = {0: 1, 1: 1}
 def p(n):
@@ -10,13 +8,13 @@ def p(n):
         return mem[n]
     else:
         s = 0
-        #Positives
+        #Positive k's
         k, flip = 1, 1
         while g(k) <= n:
             s += flip*p(n - g(k))
             k += 1
             flip *= -1
-        #Negatives
+        #Negative k's
         k, flip = -1, 1
         while g(k) <= n:
             s += flip*p(n - g(k))
@@ -27,9 +25,8 @@ def p(n):
 
 def main():
     n = 1
-    while True:
-        if (p(n) % 1000000) == 0:
-            return n
+    while (p(n) % 1000000) != 0:
         n += 1
+    return n
 
 print main()

@@ -1,6 +1,5 @@
 #Project Euler 485: Maximum number of divisors
 from eulertools import dynamic_sigma
-import time
 
 def S(u, k):
     l = dynamic_sigma(0, u+1)
@@ -20,6 +19,4 @@ def S(u, k):
             curr_index += 1
     return s
 
-t = time.time()
 print S(10**8, 10**5)
-print time.time() - t

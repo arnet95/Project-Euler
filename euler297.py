@@ -1,7 +1,7 @@
 #Project Euler 297: Zeckendorf Representation
 import time
 
-fib_cache = {0: 1, 1: 1, 2: 2}
+fib_cache = {0: 1, 1: 1}
 def fib(n):
     if n in fib_cache:
         return fib_cache[n]
@@ -24,7 +24,7 @@ def S(n):
             return 2 * S(fib(i-2)) + S(fib(i-3)) + fib(i-3) + fib(i-2)
         else:
             m = n - 1 - f
-            return S(f) + 1 + m + S(m+1)
+            return S(f) + m + 1 + S(m+1)
 
 def main(n):
     i = 1

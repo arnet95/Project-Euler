@@ -2,10 +2,10 @@
 
 inc_mem = {}
 def inc(d, n):
-    """Returns the number of increasing numbers of length n with starting digit d"""
+    """Returns the number of n-digit increasing numbers with starting digit d"""
     if (d, n) in inc_mem:
         return inc_mem[(d, n)]
-    elif d == 9 or n == 0:
+    elif n == 0:
         a = 1
     else:
         a = sum(inc(i, n-1) for i in xrange(d, 10))
@@ -14,10 +14,10 @@ def inc(d, n):
 
 dec_mem = {}
 def dec(d, n):
-    """Returns the number of decreasing numbers of length n with starting digit d"""
+    """Returns the number of n-digit decreasing numbers with starting digit d"""
     if (d, n) in dec_mem:
         return dec_mem[(d, n)]
-    elif d == 0 or n == 0:
+    elif n == 0:
         a = 1
     else:
         a = sum(dec(i, n-1) for i in xrange(d+1))

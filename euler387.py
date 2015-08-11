@@ -1,21 +1,17 @@
 #Project Euler 387: Harshad Numbers
-import time
 
 def isprime(n):
-    """Returns True if n is prime, and False otherwise"""
     if n == 2 or n == 3:
         return True
-    else:
-        if pow(2, n-1, n) == 1:
-            if pow(3, n-1, n) == 1:
-                for i in xrange(5, int(n ** 0.5) + 1, 6):
-                    if n % i == 0 or n % (i + 2) == 0:
-                        return False
-                return True
-        return False
+    if pow(2, n-1, n) == 1:
+        if pow(3, n-1, n) == 1:
+            for i in xrange(5, int(n ** 0.5) + 1, 6):
+                if n % i == 0 or n % (i + 2) == 0:
+                    return False
+            return True
+    return False
 
 def sum_of_digits(n):
-    """Returns the sum of the digits of n"""
     r = 0
     while n:
         r, n = r + n % 10, n // 10
@@ -29,10 +25,9 @@ def f(n):
         new_list = []
         for harshad in curr_list:
             l.append(harshad)
-            digit_sum = sum_of_digits(harshad)
             for i in xrange(10):
                 num = 10*harshad + i
-                if num % (digit_sum + i) == 0:
+                if num % (sum_of_digits(harshad) + i) == 0:
                     if num < n:
                         new_list.append(num)
         curr_list = new_list
@@ -58,6 +53,4 @@ def main(n):
                     s += num
     return s
 
-t = time.time()
 print main(10**14)
-print time.time() - t

@@ -1,10 +1,8 @@
 #Euler 67
 from time import time
 
-float_cost = []
-with open("p067_triangle.txt", "r") as infile:
-    for line in infile:
-        float_cost.append(line.split())
+with open("./input/p067_triangle.txt", "r") as infile:
+    float_cost = [line.split() for line in infile]
 
 actual_cost = []
 max_cost = []
