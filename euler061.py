@@ -17,4 +17,5 @@ heptagonals = filter(f, heptagonals)
 octagonals = filter(f, octagonals)
 
 all_nums = [triangles, squares, pentagonals, hexagonals, heptagonals, octagonals]
-print all_nums
+for _ in all_nums:
+    print len(_)

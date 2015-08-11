@@ -1,22 +1,13 @@
 #Euler 82
 
 matrix = []
-with open("p082_matrix.txt","r") as infile:
+with open("./input/p082_matrix.txt","r") as infile:
     for line in infile:
         matrix.append(line.split(","))
 
-cost_matrix = []
-for i in xrange(len(matrix)):
-    cost_matrix.append([])
-    for j in matrix[i]:
-        cost_matrix[i].append(int(j))
+cost_matrix = [[int(j) for j in matrix[i]] for i in xrange(80)]
 
-min_matrix = []
-for i in xrange(len(matrix)):
-    min_matrix.append([])
-    for j in matrix[i]:
-        min_matrix[i].append(10**10)
-#print min_matrix
+min_matrix = [[10**10 for _ in matrix[i]] for i in xrange(80)]
 
 #Populate first column
 for i in xrange(len(matrix)):
@@ -51,7 +42,6 @@ for i in xrange(1, len(matrix)):
 
 n = 10**10
 for i in min_matrix:
-    print i[-1]
     n = min(i[-1], n)
 print n
 #for i in xrange(len(min_matrix)):

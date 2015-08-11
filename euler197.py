@@ -7,11 +7,12 @@ def g(x):
     return f(f(x))
 
 s1 = -1
-for _ in xrange(10000):
+while s1 != g(s1):
     s1 = g(s1)
 
+
 s2 = f(-1)
-for _ in xrange(10000):
+while s2 != g(s2):
     s2 = g(s2)
 
 print s1 + s2

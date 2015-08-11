@@ -7,11 +7,11 @@ key = "0SDT"
 all_values = singles + doubles + triples
 
 one_checkout = [[i] for i in doubles]
-two_checkout = [[i, j] for i in all_values for j in doubles]
-three_checkout = [[i, j, k] for i in all_values for j in all_values for k in doubles]
+two_checkouts = [[i, j] for i in all_values for j in doubles]
+three_checkouts = [[i, j, k] for i in all_values for j in all_values for k in doubles]
 
 vals = {i: [] for i in xrange(171)}
-for checkout in one_checkout + two_checkout + three_checkout:
+for checkout in one_checkout + two_checkouts + three_checkouts:
     s = sum(key.find(i[0]) * int(i[1:]) for i in checkout)
     vals[s].append(checkout)
 

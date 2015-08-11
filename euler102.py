@@ -8,7 +8,7 @@ def angle(point1, point2):
 
 successful = 0
 
-with open("p102_triangles.txt", "r") as infile:
+with open("./input/p102_triangles.txt", "r") as infile:
     for line in infile:
         triangle = [int(n) for n in line.split(',')]
         triangle1 = (triangle[0], triangle[1])
