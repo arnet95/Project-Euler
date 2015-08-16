@@ -12,17 +12,16 @@ def sundaram3(n):
         if initial > half:
             return filter(None, numbers)
 
-def totient_gen(n):
+def odd_totient_gen(n):
+    """Generates the totients for all odd numbers x, such that 1 <= x < n"""
     phis = range(1, n, 2)
     for p in sundaram3(n):
-        phis[p//2] = p - 1
-        if 3*p < n:
-            for i in xrange(3*p, n, 2*p):
-                phis[i//2] = (phis[i//2] // p) * (p-1)
+        for i in xrange(p//2, n // 2, p):
+            phis[i] = (phis[i] // p) * (p-1)
     return phis
 
 def main(n):
-    return sum(totient_gen(n))
+    return sum(odd_totient_gen(n))
 
 print main(5*10**8)
 

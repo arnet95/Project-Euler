@@ -1,5 +1,4 @@
 #Project Euler 463: A weird recurrence relation
-import time
 
 f_mem = {1: 1, 3: 3}
 
@@ -31,6 +30,4 @@ def S(n):
     S_mem[n] = tmp
     return tmp
 
-t0 = time.time()
-print "Result:", S(3**37)
-print "Time taken:", time.time() - t0
+print S(3**37)
