@@ -32,3 +32,11 @@ def pie(n, l):
     return n - temp
 
 print f(10**6)
+
+#Project Euler 72: Counting fractions
+from eulertools import totient_gen
+
+def main(n):
+    return sum(totient_gen(n)[2:])
+
+print main(10**6)

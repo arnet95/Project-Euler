@@ -3,14 +3,14 @@
 
 def f(n):
     s = 0
-    m = 1
+    hole_size = 1
 
-    while m < n/4:
+    while hole_size < n/4:
         k = 0
-        while 4*k*(m+k) <= n:
+        while 4*k*(hole_size+k) <= n:
             k += 1
         s += (k-1)
-        m += 1
+        hole_size += 1
 
     return s
 

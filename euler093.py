@@ -47,8 +47,10 @@ for a in xrange(1, 10):
     for b in xrange(a+1, 10):
         for c in xrange(b+1, 10):
             for d in xrange(c+1,10):
-                if f(a, b, c, d) > min_i:
+                print a, b, c, d
+                s = f(a, b, c, d)
+                if s > min_i:
                     min_set = [a, b, c, d]
-                    min_i = f(a, b, c, d)
+                    min_i = s
 
 print "".join(map(str, min_set))

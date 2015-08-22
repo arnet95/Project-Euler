@@ -19,12 +19,7 @@ def f(D):
     return a
 
 def main(n):
-    max_index, max_val = 0, 0
-    for D in xrange(2, n+1):
-        if sqrt(D) % 1 != 0:
-            if f(D) > max_val:
-                max_index, max_val = D, f(D)
-    return max_index
+    return max([n for n in xrange(1, 1001) if sqrt(n) % 1 != 0], key=f)
 
 
 print main(1000), f(main(1000))

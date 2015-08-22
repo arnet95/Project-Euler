@@ -3030,7 +3030,7 @@ Problem 111
                    │ 7        │ 3       │ 9       │ 57863   │
                    ├──────────┼─────────┼─────────┼─────────┤
                    │ 8        │ 3       │ 1       │ 8887    │
-                   ├──────────┼─────────┼─────────┼─────────┤
+                   ├───���──────┼─────────┼─────────┼─────────┤
                    │ 9        │ 3       │ 7       │ 48073   │
                    └──────────┴─────────┴─────────┴─────────┘
 
@@ -3475,7 +3475,7 @@ Problem 128
    tiles, starting at "12 o'clock" and numbering the tiles 2 to 7 in an
    anti-clockwise direction.
 
-   New rings are added in the same fashion, with the next rings being
+   new rings are added in the same fashion, with the next rings being
    numbered 8 to 19, 20 to 37, 38 to 61, and so on. The diagram below shows
    the first three rings.
 

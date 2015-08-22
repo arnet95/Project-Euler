@@ -8,4 +8,6 @@ This project contains many files related to Project Euler problems. Mainly probl
  * Haskell - full solutions to problems written in Haskell
  * Scheme - full solutions to problems written in Scheme
 
-Any files outside of these specific folders are not necessarily complete, commented or readable. They may also be incredibly slow, even if they do give the right answer. This project is currently quite a mess, but I'm in the process of improving things in several ways.
+Any files outside of these specific folders are not necessarily complete, commented or readable. They may also be incredibly slow and use a lot of memory, even if they do give the right answer. This project is currently quite a mess, but I'm in the process of improving things in several ways.
+
+If there are any questions about the content here, just go ahead and ask me.

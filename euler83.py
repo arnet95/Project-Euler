@@ -1,15 +1,9 @@
 #Euler 83
 
-matrix = []
-with open("p082_matrix.txt","r") as infile:
-    for line in infile:
-        matrix.append(line.split(","))
+with open("./input/p082_matrix.txt","r") as infile:
+    matrix = [line.split(",") for line in infile]
 
-cost_matrix = []
-for i in xrange(len(matrix)):
-    cost_matrix.append([])
-    for j in matrix[i]:
-        cost_matrix[i].append(int(j))
+cost_matrix = [[int(j) for j in matrix[i]] for i in xrange(len(matrix))]
 
 def dijkstra(graph, begin, end, max_val=10**8):
     values = {node: max_val for node in graph}
@@ -45,5 +39,6 @@ def matrix_to_graph(matrix):
         graph[(l-1, j)] = {(l-1, j-1): matrix[l-1][j-1], (l-1, j+1): matrix[l-1][j+1], (l-2, j): matrix[l-2][j]}
     graph[(l-1, c-1)] = {(l-2, c-1): matrix[l-2][c-1], (l-1, c-2): matrix[l-1][c-2]}
     return graph
+
 
 print cost_matrix[0][0] + dijkstra(matrix_to_graph(cost_matrix), (0,0), (len(matrix)-1,len(matrix[0])-1))

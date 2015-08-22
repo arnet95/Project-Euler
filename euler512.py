@@ -1,7 +1,7 @@
 #Project Euler 512: Sums of totients of powers
 
 def sundaram3(n):
-    """New prime sieve. Uses less memory than the one in eulertools"""
+    """new prime sieve. Uses less memory than the one in eulertools"""
     numbers = range(3, n+1, 2)
     half = n//2
     initial = 4

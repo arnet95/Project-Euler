@@ -18,5 +18,14 @@ def main(n):
     #for num in candidates:
 
 
-print main(10**8)
+#print main(10**8)
 #<print len(squarefree_gen(10**8))
+
+def main(n):
+    l = [[1] for i in xrange(n+1)]
+    for num in xrange(2, int(n**0.5)+1):
+        for num_mult in xrange(num, n+1, num):
+            l[num_mult] += [].append(num)
+    return l
+
+print main(100)[30]

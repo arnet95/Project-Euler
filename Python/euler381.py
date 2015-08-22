@@ -1,3 +1,4 @@
+#Project Euler 381: (prime-k) factorial
 from eulertools import primes, modinv
 
 def S(p):

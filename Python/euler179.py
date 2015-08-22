@@ -1,4 +1,4 @@
-#Euler 179
+#Project Euler 179: Consecutive positive divisors
 from math import sqrt
 
 def d_sieve(n):

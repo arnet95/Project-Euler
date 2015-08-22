@@ -2,7 +2,7 @@
 
 #Create matrix of strings of numbers
 matrix = []
-infile = open("./input/p081_matrix.txt","r")
+infile = open("../input/p081_matrix.txt","r")
 for line in infile:
     matrix.append(line.split(","))
 infile.close()
