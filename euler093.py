@@ -40,17 +40,7 @@ def f(a, b, c, d):
         i += 1
     return i - 1
 
-min_set = [0] * 4
-min_i = 0
 
-for a in xrange(1, 10):
-    for b in xrange(a+1, 10):
-        for c in xrange(b+1, 10):
-            for d in xrange(c+1,10):
-                print a, b, c, d
-                s = f(a, b, c, d)
-                if s > min_i:
-                    min_set = [a, b, c, d]
-                    min_i = s
-
-print "".join(map(str, min_set))
+num_sets = [(a, b, c, d) for a in range(1, 10) for b in range(a+1, 10) for c in range(b+1, 10) for d in range(c+1, 10)]
+max_set = max(num_sets, key=lambda s: f(*s))
+print "".join(map(str, max_set))

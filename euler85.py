@@ -1,9 +1,8 @@
-def num_rect(M,N):
-    s=0
-    for m in xrange(1,M+1):
-        for n in xrange(1,N+1):
-            s += (M+1-m)*(N+1-n)
-    return s
+def num_rect(M, N):
+    return (M*(M+1)*N*(N+1))// 4
+
+#We have that it is equal to sum((N-n+1)(M-m+1) for n in xrange(1, N+1) for m in xrange(1, M+1))
+#Using arithmetic sequences, we can get the closed form expressions.
 
 
 def f(n):
@@ -18,3 +17,5 @@ def f(n):
             if x > 2000000:
                 break
     return a,b
+
+print f(100) #Good enough

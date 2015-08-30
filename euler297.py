@@ -34,3 +34,13 @@ def main(n):
     return S(n)
 
 print main(10**17)
+
+#There is one essential property of the Zeckendorf representation we need,
+#which is that using a greedy algorithm is enough to find a number's Zeckendorf
+#representation. (Meaning that we can always take the largest Fibonacci number
+#not exceeding n as the first number in the Zeckendorf representation.)
+
+#What this means, is that z(n) = 1 + z(f(n)) where f(n) is the largest Fibonacci
+#number not exceeding n. If we let S(n) = sum(z(k) for k in xrange(1, n)), we can
+#use this to write S(n) recursively. If n is a Fibonacci number, (say fib(i)), we
+#have S(fib(i)) = 

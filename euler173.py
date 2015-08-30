@@ -5,11 +5,11 @@ def f(n):
     s = 0
     hole_size = 1
 
-    while hole_size < n/4:
-        k = 0
+    while hole_size < n // 4:
+        k = 1
         while 4*k*(hole_size+k) <= n:
             k += 1
-        s += (k-1)
+            s += 1
         hole_size += 1
 
     return s
