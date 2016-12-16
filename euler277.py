@@ -17,6 +17,4 @@ def main(limit, string):
         n += 1
     return (n * (3**(k-1)) - d) // c
 
-s = "UDDDUdddDDUDDddDdDddDDUDDdUUDd"
-result = main(10**15, s)
-print result
+print main(10**15, "UDDDUdddDDUDDddDdDddDDUDDdUUDd")

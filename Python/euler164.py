@@ -21,7 +21,7 @@ print main(20)
 
 #We let f(xpp, xp, x, n) represent the number of n+3-digit numbers
 #where the first three digits are xpp, xp, and x respectively. If we, when we
-#recursively call f, makes sure that xpp + xp + x <= n, we never have to check
+#recursively call f, make sure that xpp + xp + x <= n, we never have to check
 #that condition later. This makes our base case when n == 0, and then we can
 #return 1, as we've found a number satisying the conditions. Otherwise, we
 #can call f(xp, x, i, n-1) for all values of i such that xp + x + i <= n.

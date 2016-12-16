@@ -33,7 +33,7 @@ def main(m, n):
 print main(20000000, 15000000)
 
 #Given n = p1**e1 * p2**e2 * ... * pn**en, sum_factor(n) = p1*e1 + p2*e2 + ... + pn*en.
-#This reduces our tasks to finding ei for a given n.
+#This reduces our task to finding ei for a given n.
 #Also, since mCn = (m!) // ((n!) * ((m-n)!)), we have
 #sum_factor(mCn) = sum_factor(m!) - sum_factor(n!) - sum_factor((m-n)!).
 #We here let f(n) = sum_factor(n!). What we need to do, is to find the largest ei

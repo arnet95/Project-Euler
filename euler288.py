@@ -7,7 +7,7 @@ def NP(p, q, m):
         s = pow(s, 2, 50515093)
         res += (s % p) * ((p**n - 1) // (p-1))
     mid = 0
-    for n in xrange(m+1, q+1):
+    for _ in xrange(m+1, q+1):
         s = pow(s, 2, 50515093)
         mid += (s % p)
     return (res + ((p**m - 1)//(p-1))*mid) % (p**m)

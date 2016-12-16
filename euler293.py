@@ -20,14 +20,12 @@ def prod(l):
         res *= i
     return res
 
-
 def pseudoFortunate(n):
     m = 3
     while True:
         if isprime(n+m):
             return m
         m += 2
-
 
 def f(n):
     l = []

@@ -13,4 +13,7 @@ while hole_size < n // 4:
 def N(n):
     return d.values().count(n)
 
-print sum(N(i) for i in xrange(1, 11))
+def main(n):
+    return sum(N(i) for i in xrange(1, n+1))
+
+print main(10)
