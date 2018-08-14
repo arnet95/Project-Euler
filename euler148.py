@@ -1,14 +1,24 @@
-def test(n):
+def base_convert(n, base):
+    l = []
+    while n > 0:
+        l.append(n % base)
+        n //= base
+    return l[::-1]
 
-    print " "*(n+1) + "_"
+def prod(l):
+    result = 1
+    for i in l:
+        result *= i
+    return result
 
-    l = [1]
-    for k in xrange(n):
-        new_l = [1] + [(l[i]+l[i+1]) % 7 for i in xrange(0, k)] + [1]
-        s = ""
-        for i in new_l:
-            s += ("*" if i == 0 else "_") + " "
-        print " "*(n-k) + "%s" % s
-        l = new_l
+def count(n):
+    result = 1
+    while n > 0:
+        result *= ((n % 7) + 1)
+        n //= 7
+    return result
 
-test(200)
+def main(n):
+    return sum(count(i) for i in xrange(n))
+
+print main(10**9)

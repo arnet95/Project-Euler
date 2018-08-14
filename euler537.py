@@ -9,14 +9,17 @@ for i in xrange(len(prime_list)-1):
 
 modulus = 1004535809
 
-def T(n, k):
-    l = num_pi
-    for i in xrange(2, k+1):
-        new_l = []
-        for m in xrange(n+1):
-            new_l.append(sum(num_pi[j]*l[m-j] % modulus for j in xrange(m+1)) % modulus)
-        l = new_l
-    return l[n]
+#def T(n, k):
+#    l = num_pi
+#    for i in xrange(2, k+1):
+#        new_l = []
+#        for m in xrange(n+1):
+#            new_l.append(sum(num_pi[j]*l[m-j] % modulus for j in xrange(m+1)) % modulus)
+#        l = new_l
+#    return l[n]
 
-for i in xrange(0, 11):
-    print T(10, i)
+#for i in xrange(0, 11):
+#    print T(10, i)
+
+def T(n, k):
+    k = 1

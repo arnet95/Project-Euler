@@ -42,6 +42,13 @@ def modinv(a, m):
     else:
         return x % m
 
+def crt(a1, a2, m1, m2):
+    """Input is x = a1 (mod m1), x = a2 (mod m2)"""
+    M = m1*m2
+    i1 = modinv(m2, m1)
+    i2 = modinv(m1, m2)
+    return (a1 * i1 * m2 + a2 * i2 * m1) % M
+
 def dynamic_sigma(x, n):
     if x == 0:
         divs = [0, 1] + [2] * (n - 1)

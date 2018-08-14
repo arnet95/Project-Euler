@@ -1,11 +1,13 @@
 from eulertools import primes
 
 def prime_factors_gen(n):
-	phis = [[] for _ in xrange(n+1)]
-	for p in primes(n+1):
-		for i in xrange(p, n+1, p):
-			phis[i].append(p)
+	phis = [[2] for _ in xrange(n//2+1)]
+	for p in primes(n//2+1)[1:]:
+		for i in xrange(2*p, n+1, 2*p):
+			phis[i//2].append(p)
 	return phis
+
+prime_factors = prime_factors_gen(10**8)
 
 def is_square(n, p):
     return pow(n, (p-1) // 2, p) == 1
@@ -32,23 +34,25 @@ def find_square_roots(n, p):
     return result[0], p - result[0]
 
 def is_prim_root(n, p):
-    """Naive method"""
-    return True
+	l = prime_factors[(p-1)//2]
+	return all([pow(n, (p-1)//pi, p) != 1 for pi in l])
 
-def main(prime_list):
-    candidates = [p for p in prime_list if is_square(5, p)]
-    count = 1
-    successes = 5 #5 is a bit special, but it works
-    for cand in candidates:
-        a, b = find_square_roots(5, cand)
-        if is_prim_root((1+a)*((cand+1)//2) % cand, cand):
-            count += 1
-            successes += cand
-        else:
-            if is_prim_root((1+b)*((cand+1)//2) % cand, cand):
-                count += 1
-                successes += cand
-    return count, successes
 
-#print main(primes(10**8)[1:])
-print len(prime_factors_gen(10**8))
+
+def main(n):
+	candidates = [p for p in primes(n)[1:] if is_square(5, p)]
+	count = 1
+	successes = 5 #Since 3 is a prim fib root mod 5, we add this.
+	for cand in candidates:
+		a, b = find_square_roots(5, cand)
+		if is_prim_root((1+a)*((cand+1)//2) % cand, cand):
+			count += 1
+			successes += cand
+		else:
+			if is_prim_root((1+b)*((cand+1)//2) % cand, cand):
+				count += 1
+				successes += cand
+	return count, successes
+
+print main(10**8)
+#print len(prime_factors_gen(10**8))
