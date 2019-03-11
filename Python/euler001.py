@@ -2,9 +2,12 @@
 import time
 
 #Most efficient way, based on the sum of arithmetic sequences:
+def tri(n):
+    return n*(n+1)//2
+    
 def sum_of_sequences(n):
     n = n - 1
-    return 3*((n/3)*(n/3+1))/2 + 5*(n/5*(n/5+1))/2 - 15*(n/15*(n/15+1))/2
+    return 3*tri(n//3) + 5*tri(n//5) - 15*tri(n//15)
 
 #Expression comprehension:
 def comprehension(n):
@@ -14,7 +17,7 @@ def comprehension(n):
 def verbose(n):
     s = 0
     for i in xrange(1, n):
-        if i%3 == 0 or i%5 == 0:
+        if i % 3 == 0 or i % 5 == 0:
             s += i
     return s
 

@@ -14,14 +14,14 @@ conditions = [
 ("6375711915077050", 1),
 ("6913859173121360", 1),
 ("6442889055042768", 2),
-("2321386104303845", 0),
 ("2326509471271448", 2),
 ("5251583379644322", 2),
 ("1748270476758276", 3),
 ("4895722652190306", 1),
 ("3041631117224635", 3),
 ("1841236454324589", 3),
-("2659862637316867", 2)]
+("2659862637316867", 2),
+("2321386104303845", 0)]
 
 length = 16
 
@@ -49,6 +49,16 @@ def dfs(current_guess, current_conditions):
                 if a is not None:
                     return a
 
+res = 0
+for i in xrange(16):
+    s = "0123456789"
+    d = {c: 0 for c in s}
+    for cond in conditions:
+        if cond[1] > 0:
+            d[cond[0][i]] += 1
+        else:
+            d[cond[0][i]] = 0
+    print i, [(c, d[c]) for c in s]
+    res += max(d.values())
 
-
-print dfs("", conditions)
+print res

@@ -49,22 +49,40 @@ def crt(a1, a2, m1, m2):
     i2 = modinv(m1, m2)
     return (a1 * i1 * m2 + a2 * i2 * m1) % M
 
+def isqrt(n):
+    x = n
+    y = (x + 1) // 2
+    while y < x:
+        x = y
+        y = (x + n // x) // 2
+    return x
+
+def is_square(n):
+    x = n // 2
+    seen = set([x])
+    while x * x != n:
+        x = (x + (n // x)) // 2
+        if x in seen:
+            return False
+        seen.add(x)
+    return True
+
 def dynamic_sigma(x, n):
     if x == 0:
         divs = [0, 1] + [2] * (n - 1)
-        for i in xrange(2, int(n**0.5) + 1):
+        for i in xrange(2, isqrt(n) + 1):
             divs[i*i] += 1
             for d in xrange(i*(i+1), n+1, i):
                 divs[d] += 2
     elif x == 1:
         divs = [0, 1] + [i + 1 for i in xrange(2, n+1)]
-        for i in xrange(2, int(n**0.5) + 1):
+        for i in xrange(2, isqrt(n) + 1):
             divs[i*i] += i
             for d in xrange(i*(i+1), n+1, i):
                 divs[d] += i + (d//i)
     else:
         divs = [0, 1] + [i**x + 1 for i in xrange(2, n+1)]
-        for i in xrange(2, int(n**0.5) + 1):
+        for i in xrange(2, isqrt(n) + 1):
             divs[i*i] += i**x
             for d in xrange(i*(i+1), n+1, i):
                 divs[d] += i**x + (d//i)**x

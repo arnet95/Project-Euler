@@ -1,22 +1,10 @@
 #Project Euler 5: Smallest multiple
 
-from eulertools import primes
-from math import log
+from fractions import gcd
 
+def lcm(a, b):
+    return (a*b)//gcd(a, b)
 
-def f(n):
-    """This function returns the smallest positive number
-    which is evenly divisble by all the numbers from 1 to n"""
-    product = 1
-    for i in primes(n+1):
-        #For each prime less than or equal to n,
-        #find the largest power of that prime less than or equal to n
-        #Multiply all these prime powers together. It will give the right result.
-        target = log(n)/log(i)
-        k = 1
-        while k < target:
-            k += 1
-        product *= i**(k-1)
-    return product
+lcm_list = lambda n: reduce(lcm, range(1, n+1))
 
-print f(20)
+print lcm_list(20)

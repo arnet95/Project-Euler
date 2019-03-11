@@ -1,0 +1,25 @@
+Problem 567: Reciprocal games I
+JA(n) = \sum_{k=1}^n (1/k)*choose(n, k)/(2^n)
+JB(n) = \sum_{k=1}^n (1/k)*(1/choose(n, k))
+
+Problem 421: Prime factors of n^15 + 1
+Compute all solutions s s.t. s^15 === p-1 (mod p). Then fill in the n's such that n === s (mod p).
+
+Problem 390: Triangles with non rational sides and integral area
+Area(b, c) = sqrt(b'^2 + c'^2 + (2b'c')^2)   b, c = 2b', 2c'
+
+Problem 545:
+D(k) = 20010 iff k is even and \prod_{(p-1) \mid k} p = 20010
+
+Problem 641:
+f(n) = #{k | k <= n and 6 | \sigma_0(k) - 1}
+
+Problem 602:
+c(n, k) = (n-k+1)c(n-1, k-1) + kc(n-1, k)
+c(n, 1) = c(n, n) = 1
+
+Problem 198:
+Ambiguous Numbers are precisely numbers which are of the form (p + q)/2, where p and q form the end points of an interval in the Stern-Brocot tree.
+
+Problem 454:
+F(L) = sum(#{n| n \in [k+1, L] if k | n^2 and n + n^2/k <= L} for k in [1, ..., L-1])

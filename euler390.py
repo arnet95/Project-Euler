@@ -15,8 +15,18 @@ def isqrt(n):
         y = (x + n // x) // 2
     return x
 
-for k in xrange(1, 101):
-    for l in xrange(1, k+1):
-        res = k**2+l**2+(2*k*l)**2
-        if is_square(res):
-            print k, l, isqrt(res)
+def f(N):
+    Nsq = N**2
+    count = 0
+    result = 0
+    for bprime in xrange(1, isqrt(Nsq//2)+1):
+        print bprime
+        for cprime in xrange(1, min(bprime, isqrt((Nsq-bprime**2)//(1+4*bprime**2)))+1):
+            count += 1
+    #        res = bprime**2+cprime**2+4*bprime**2*cprime**2
+    #        if is_square(res):
+    #            result += isqrt(res)
+#    print result
+    print count
+
+f(10**10)

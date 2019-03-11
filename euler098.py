@@ -1,33 +1,35 @@
-from math import sqrt
 from itertools import permutations
+from eulertools import is_square
 
-def is_square(n):
-    return sqrt(n) % 1 == 0
+def max_square(anagram_pair):
+    s1, s2 = anagram_pair
+    letters = sorted(list(set(s1)))
+    l = len(letters)
+    max_val = 0
+    if l <= 10:
+        for tup in permutations([str(i) for i in range(10)], l):
+            number_s1 = s1
+            number_s2 = s2
+            for i in xrange(l):
+                number_s1 = number_s1.replace(letters[i], tup[i])
+                number_s2 = number_s2.replace(letters[i], tup[i])
+            if number_s1[0] != "0" and number_s2[0] != "0":
+                if is_square(int(number_s1)) and is_square(int(number_s2)):
+                    max_val = max(max_val, int(number_s1), int(number_s2))
+    return max_val
 
-def f(w1, w2):
-    pass
+def main():
+    infile = open("./input/p098_words.txt", "r")
+    word_list = [word[1:-1] for word in infile.readline().split(',')]
 
-infile = open("p098_words.txt", "r")
-word_list = infile.readline().split(',')
+    anagram_pairs = []
+    for word in word_list:
+        for new_word in word_list:
+            if new_word != word:
+                if sorted(new_word) == sorted(word):
+                    if (new_word, word) not in anagram_pairs:
+                        anagram_pairs.append((word, new_word))
+    anagram_pairs = sorted(anagram_pairs, key = lambda x: len(x[0]), reverse = True)
+    return max(max_square(pair) for pair in anagram_pairs)
 
-word_dict = {i: [] for i in xrange(1, 15)}
-for word in word_list:
-    word_dict[len(word) - 2].append(word[1:-1])
-
-anagram_sets = []
-for i in xrange(1, 15):
-    l = word_dict[i]
-    for n in l:
-        for m in l:
-            if sorted(n) == sorted(m):
-                if n != m:
-                    if (m, n) not in anagram_sets:
-                        anagram_sets.append((n, m))
-anagram_sets = anagram_sets[::-1]
-for anagram in anagram_sets:
-    word1 = anagram[0]
-    word2 = anagram[1]
-    #f(word1, word2)
-
-print anagram_sets
-f('RACE', 'CARE')
+print main()
