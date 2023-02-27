@@ -1,25 +1,26 @@
 from math import log
 
+limit = 200000
+
 def legendre(p, n):
     if n == 0:
         return 0
-    return sum(n // (p**k) for k in xrange(1, int(log(n)/log(p)) + 1))
-
-def order(p, n):
     count = 0
-    while n % p == 0:
-        n //= p
-        count += 1
+    power = p
+    while power <= n:
+        count += (n//power)
+        power *= p
     return count
 
-def v(p, n, k):
-    return legendre(p, n) - (legendre(p, k) + legendre(p, n-k))
+vp2 = [legendre(2, i) for i in range(limit + 1)]
+upbound2 = vp2[limit] - 12
+vp5 = [legendre(5, i) for i in range(limit + 1)]
+upbound5 = vp5[limit] - 12
 
-
-def f(n):
-    count = 0
-    for i in xrange(n+1):
-        a, b = 12 - v(2, n, i), 12 - v(5, n, i)
-    return count
-
-print f(2*10**5)
+count = 0
+for a in range(0, limit+1):
+    for b in range(0, (limit-a)+1):
+        c = limit - (a + b)
+        if (upbound2 >= vp2[a] + vp2[b] + vp2[c]) and (upbound5 >= vp5[a] + vp5[b] + vp5[c]):
+            count += 1
+print(count)

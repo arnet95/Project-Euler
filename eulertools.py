@@ -5,18 +5,18 @@ def primes(n):
     """ Input n>=6, Returns a list of primes, 2 <= p < n """
     correction = (n%6>1)
     n = {0:n,1:n-1,2:n+4,3:n+3,4:n+2,5:n+1}[n%6]
-    sieve = [True] * (n/3)
+    sieve = [True] * (n//3)
     sieve[0] = False
-    for i in xrange(int(n**0.5)/3+1):
+    for i in range(int(n**0.5)//3+1):
       if sieve[i]:
         k=3*i+1|1
-        sieve[      ((k*k)/3)      ::2*k]=[False]*((n/6-(k*k)/6-1)/k+1)
-        sieve[(k*k+4*k-2*k*(i&1))/3::2*k]=[False]*((n/6-(k*k+4*k-2*k*(i&1))/6-1)/k+1)
-    return [2,3] + [3*i+1|1 for i in xrange(1,n/3-correction) if sieve[i]]
+        sieve[      ((k*k)//3)      ::2*k]=[False]*((n//6-(k*k)//6-1)//k+1)
+        sieve[(k*k+4*k-2*k*(i&1))//3::2*k]=[False]*((n//6-(k*k+4*k-2*k*(i&1))//6-1)//k+1)
+    return [2,3] + [3*i+1|1 for i in range(1,n//3-correction) if sieve[i]]
 
 
 def squarefree_gen(n):
-    """Returns list of squarefree numbers  2 <= s <= n"""
+    """Returns list of squarefree numbers 2 <= s <= n"""
     sieve = [True] * (n+1)
     for p in primes(int(n**0.5)+2):
         x = p**2
@@ -26,7 +26,7 @@ def squarefree_gen(n):
             sieve[prod] = False
             m += 1
             prod = m*x
-    return [i for i in xrange(2, n+1) if sieve[i]]
+    return [i for i in range(2, n+1) if sieve[i]]
 
 def egcd(a, b):
     if a == 0:
@@ -70,28 +70,34 @@ def is_square(n):
 def dynamic_sigma(x, n):
     if x == 0:
         divs = [0, 1] + [2] * (n - 1)
-        for i in xrange(2, isqrt(n) + 1):
+        for i in range(2, isqrt(n) + 1):
             divs[i*i] += 1
-            for d in xrange(i*(i+1), n+1, i):
+            for d in range(i*(i+1), n+1, i):
                 divs[d] += 2
     elif x == 1:
-        divs = [0, 1] + [i + 1 for i in xrange(2, n+1)]
-        for i in xrange(2, isqrt(n) + 1):
+        divs = [0, 1] + [i + 1 for i in range(2, n+1)]
+        for i in range(2, isqrt(n) + 1):
             divs[i*i] += i
-            for d in xrange(i*(i+1), n+1, i):
+            for d in range(i*(i+1), n+1, i):
                 divs[d] += i + (d//i)
     else:
-        divs = [0, 1] + [i**x + 1 for i in xrange(2, n+1)]
-        for i in xrange(2, isqrt(n) + 1):
+        divs = [0, 1] + [i**x + 1 for i in range(2, n+1)]
+        for i in range(2, isqrt(n) + 1):
             divs[i*i] += i**x
-            for d in xrange(i*(i+1), n+1, i):
+            for d in range(i*(i+1), n+1, i):
                 divs[d] += i**x + (d//i)**x
     return divs
 
 def totient_gen(n):
-    phis = [i for i in xrange(n+1)]
+    phis = [i for i in range(n+1)]
     for p in primes(n+1):
-        for i in xrange(p, n+1, p):
+        for i in range(p, n+1, p):
             phis[i] //= p
             phis[i] *= (p-1)
     return phis
+
+def prod(l):
+    result = 1
+    for i in l:
+        result *= i
+    return result

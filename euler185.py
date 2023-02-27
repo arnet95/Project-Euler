@@ -1,3 +1,4 @@
+from itertools import combinations
 
 conditions = [
 ("5616185650518293", 2),
@@ -25,40 +26,48 @@ conditions = [
 
 length = 16
 
-def dfs(current_guess, current_conditions):
-    print current_guess, current_conditions
-    if max(i[1] for i in current_conditions) > length - len(current_guess):
+#conditions = [("51545", 2),("39458", 2),("90342", 2),("70794", 0),("34109", 1),("12531", 1)]
+#length = 5
+
+def f(conditions, excluded):
+    str_length = len(excluded)
+    if any(condition[1] > str_length for condition in conditions):
         return None
-    if len(current_guess) == length:
-        if sum(i[1] for i in current_conditions) == 0:
-            return current_guess
-    else:
-        for c in "0123456789":
-            new_guess = current_guess + c
+    if str_length == 0:
+        return ""
+    if any(len(s) == 10 for s in excluded):
+        return None
+    if len(conditions) == 0:
+        return "".join([list(set([str(j) for j in range(10)]) - exclude_set)[0] for exclude_set in excluded])
+    conditions = sorted(conditions, key=lambda x: x[1])
+    #print(conditions, excluded, str_length)
+    #Second: Loop over all possible correct digit assignments
+    numbers, num_correct = conditions[0]
+    for indices in combinations(range(str_length), num_correct):
+        #Check that none of the indices are not excluded
+        if all(numbers[i] not in excluded[i] for i in indices):
+            not_indices = [i for i in range(str_length) if i not in indices]
+            #Create new parameters
             new_conditions = []
-            flag = True
-            for i, j in current_conditions:
-                if i[0] == c:
-                    if j == 0:
-                        flag = False
-                    new_conditions.append((i[1:], j-1))
-                else:
-                    new_conditions.append((i[1:], j))
-            if flag:
-                a = dfs(new_guess, new_conditions)
-                if a is not None:
-                    return a
+            for condition in conditions[1:]:
+                new_nums = "".join([condition[0][i] for i in not_indices])
+                new_correct = condition[1] - sum(numbers[i] == condition[0][i] for i in indices)
+                new_conditions.append((new_nums, new_correct))
+            new_excluded = []
+            for i in not_indices:
+                new_excluded.append(set(list(excluded[i]) + [numbers[i]]))
+            rec_result = f(new_conditions, new_excluded)
+            if rec_result is not None:
+                ret_string = ""
+                j = 0
+                for i in range(str_length):
+                    if i in indices:
+                        ret_string += numbers[i]
+                    else:
+                        ret_string += rec_result[j]
+                        j += 1
+                return ret_string
+    return None
 
-res = 0
-for i in xrange(16):
-    s = "0123456789"
-    d = {c: 0 for c in s}
-    for cond in conditions:
-        if cond[1] > 0:
-            d[cond[0][i]] += 1
-        else:
-            d[cond[0][i]] = 0
-    print i, [(c, d[c]) for c in s]
-    res += max(d.values())
 
-print res
+print(f(conditions, [set([]) for i in range(length)]))
