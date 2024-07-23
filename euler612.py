@@ -1,13 +1,3 @@
-def f_test(n):
-    count = 0
-    for q in range(1, n):
-        for p in range(1, q):
-            if len(set(str(q)).intersection(set(str(p)))) > 0:
-                count += 1
-    return count
-
-
-
 def f(L):
     d = {(False, )*10: 1}
     for _ in range(L):
@@ -22,7 +12,6 @@ def f(L):
                 new_d[new_tup] += d[s]
             else:
                 new_d[new_tup] = d[s]
-
         for i in range(1, 10):
             for s in d:
                 new_tup = list(s)

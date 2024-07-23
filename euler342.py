@@ -1,5 +1,5 @@
 from eulertools import primes
-#from math import isqrt
+from math import isqrt
 
 def prime_factors_gen(n):
     factorisations = [{} for _ in range(n+1)]
@@ -13,8 +13,22 @@ def prime_factors_gen(n):
             k += 1
     return factorisations
 
+def base_nums(L):
+    ps = primes(isqrt(L))
+    smooth_facs = {1: {}}
+    for i in range(len(ps)):
+        limit = L//(p**2)
+
+
 def f(L):
-    facs = prime_factors_gen(int(L**0.5)+1)
+    facs = prime_factors_gen(isqrt(L)+1)
+    smooth_facs = {1: {}}
+    ps = primes(isqrt(L))
+    for i in range(len(ps)):
+        limit = L//p**2
+        
+
+
     power = 2
     result = 0
     while 2**power <= L:
@@ -33,6 +47,3 @@ def f(L):
                 l = sorted(new_l)
             
 
-
-        power += 3
-    q = 2, 5, 8

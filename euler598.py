@@ -17,7 +17,6 @@ def all_pfs(n, ps):
             n //= p
     return n == 1
 
-
 def check(f, ps):
     num = f.numerator
     den = f.denominator

@@ -12,33 +12,70 @@ def mobius_gen(n):
             k += 1
     return mobius_list
 
-N = 10**8
-mobius_list = mobius_gen(isqrt(10**16)//2)
 
-def sqfcount(n):
+
+
+def sqfcount(n, mobius):
     count = 0
     for k in range(1, isqrt(n)+1):
-        count += (n//(k**2))*mobius_list[k]
+        count += (n//(k**2))*mobius[k]
     return count
 
-prime_list = primes(10**8)
+def generate_exponents(ps, N):
+    if len(ps) == 1:
+        results = []
+        power = 2
+        while ps[0]**power <= N:
+            results.append((power,))
+            power += 2
+        return results
+    else:
+        #Assume ps is in ascending order
+        results = []
+        initial_power = 2
+        while ps[0]**initial_power <= N:
+            for tup in generate_exponents(ps[1:], N//(ps[0]**initial_power)):
+                results.append((initial_power,) + tup)
+            initial_power += 2
+        return results
 
-results = {}
-k = 1
+def C(k, N, ps, mobius):
+    result = 0
+    l = list(range(k))
+    while True:
+        #Try even powers of current list
+        curr_ps = [ps[i] for i in l]
+        for powers in generate_exponents(curr_ps, N):
+            result += sqfcount(N//prod([curr_ps[i]**powers[i] for i in range(k)]), mobius)
 
-result = 0
-i = 0
-while prime_list[i]**2 <= N:
-    result += sqfcount(N//(prime_list[i]**2))
-    i += 1
+        #Generate next l
+        idx = k-1
+        l[idx] += 1
+        while l[-1] < len(ps) and prod(ps[i] for i in l)**2 > N and idx > 0:
+            idx -= 1
+            l = l[:idx] + list(range(l[idx]+1, l[idx] + k - idx + 1))
+        #Break if next l does not exist
+        if l[-1] >= len(ps) or prod(ps[i] for i in l)**2 > N:
+            break
 
-print(result)
+    return result
 
 
-#while prod(prime_list[:k])**2 <= N:
-#    result = 0
-#    i = 0
-#    while prod(prime_list[i:i+k])**2 <= N:
+#print(C(1, 10**8, primes(10**4), mobius_gen(10**4//2)))
 
-#    k += 1#
-print(sqfcount(2**50))
+def f(N):
+    mobius = mobius_gen(isqrt(N)//2)
+    prime_list = primes(isqrt(N))
+
+    results = {}
+    k = 1
+    ck = C(k, N, prime_list, mobius)
+    while ck > 0:
+        print(k)
+        results[k] = ck
+        k += 1
+        ck = C(k, N, prime_list, mobius)
+    results[0] = N - sum(results.values())
+    return prod(results.values()) % (10**9 + 7)
+
+print(f(10**16))

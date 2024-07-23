@@ -14,4 +14,3 @@ for i in range(pc):
             r = ps[k]
             result += g(p, q, r)
 print(result)
-

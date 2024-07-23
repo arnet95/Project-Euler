@@ -1,0 +1,32 @@
+>>> powertwenty = 1
+>>> i = 0
+>>> count = 0
+>>> while count < 10:
+...     powertwenty *= 2
+...     s = str(powertwenty)
+...     if s == "12":
+...             print(s)
+...             count += 1
+...             print(i)
+...             i += 1
+...     powertwenty = int(s[:20])
+... 
+^CTraceback (most recent call last):
+  File "<stdin>", line 3, in <module>
+KeyboardInterrupt
+>>> while count < 10:
+... 
+  File "<stdin>", line 2
+    
+    ^
+IndentationError: expected an indented block after 'while' statement on line 1
+>>> powertwenty = 1
+>>> while count < 10:
+...     powertwenty *= 2
+...     s = str(powertwenty)
+...     i += 1
+...     if s == "12":
+...             print(s)
+...             count += 1
+...             print(i)
+...     powertwenty = int(s[:20])
